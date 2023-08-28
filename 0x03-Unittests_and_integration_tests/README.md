@@ -16,3 +16,6 @@ nested_map={"a": 1}, path=("a",)
 nested_map={"a": {"b": 2}}, path=("a",)
 nested_map={"a": {"b": 2}}, path=("a", "b")
 ```
+For each of these inputs, test with assertEqual that the function returns the expected result.
+
+The body of the test method should not be longer than 2 lines.
