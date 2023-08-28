@@ -1,4 +1,4 @@
-# Unittest _and integration tests
+# Unittest and integration tests
 
 ## Tasks
 ### 0. Parameterize a unit test
