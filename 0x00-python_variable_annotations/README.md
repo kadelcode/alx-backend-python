@@ -172,3 +172,37 @@ sum_mixed_list(mixed) returns 679.13 which is a <class 'float'>
 ```
 
 ### 7. Complex types - string and int/float to tuple
+Write a type-annotated function ```to_kv``` that takes a string ```k``` and an int OR float ```v``` as arguments and returns a tuple. The first element of the tuple is the string ```k```. The second element is the square of the int/float ```v``` and should be annotated as a float.
+```
+bob@dylan:~$ cat 7-main.py
+#!/usr/bin/env python3
+
+to_kv = __import__('7-to_kv').to_kv
+
+print(to_kv.__annotations__)
+print(to_kv("eggs", 3))
+print(to_kv("school", 0.02))
+
+bob@dylan:~$ ./7-main.py
+{'k': <class 'str'>, 'v': typing.Union[int, float], 'return': typing.Tuple[str, float]}
+('eggs', 9)
+('school', 0.0004)
+```
+
+### 8. Complex types - functions
+Write a type-annotated function ```make_multiplier``` that takes a float ```multiplier``` as argument and returns a function that multiplies a float by ```multiplier```.
+```
+bob@dylan:~$ cat 8-main.py
+#!/usr/bin/env python3
+
+make_multiplier = __import__('8-make_multiplier').make_multiplier
+print(make_multiplier.__annotations__)
+fun = make_multiplier(2.22)
+print("{}".format(fun(2.22)))
+
+bob@dylan:~$ ./8-main.py
+{'multiplier': <class 'float'>, 'return': typing.Callable[[float], float]}
+4.928400000000001
+```
+
+### 9. Let's duck type an iterable object
