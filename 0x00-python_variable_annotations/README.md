@@ -206,3 +206,73 @@ bob@dylan:~$ ./8-main.py
 ```
 
 ### 9. Let's duck type an iterable object
+Annotate the below function’s parameters and return values with the appropriate types
+```
+def element_length(lst):
+    return [(i, len(i)) for i in lst]
+```
+```
+bob@dylan:~$ cat 9-main.py 
+#!/usr/bin/env python3
+
+element_length =  __import__('9-element_length').element_length
+
+print(element_length.__annotations__)
+
+bob@dylan:~$ ./9-main.py 
+{'lst': typing.Iterable[typing.Sequence], 'return': typing.List[typing.Tuple[typing.Sequence, int]]}
+```
+
+### 10. Duck typing - first element of a sequence
+Augment the following code with the correct duck-typed annotations:
+```
+# The types of the elements of the input are not know
+def safe_first_element(lst):
+    if lst:
+        return lst[0]
+    else:
+        return None
+```
+```
+bob@dylan:~$ cat 100-main.py 
+#!/usr/bin/env python3
+
+safe_first_element =  __import__('100-safe_first_element').safe_first_element
+
+print(safe_first_element.__annotations__)
+
+bob@dylan:~$ ./100-main.py 
+{'lst': typing.Sequence[typing.Any], 'return': typing.Union[typing.Any, NoneType]}
+```
+
+### 11. More involved type annotations
+Given the parameters and the return values, add type annotations to the function
+
+Hint: look into TypeVar
+```
+def safely_get_value(dct, key, default = None):
+    if key in dct:
+        return dct[key]
+    else:
+        return default
+```
+```
+bob@dylan:~$ cat 101-main.py 
+#!/usr/bin/env python3
+
+safely_get_value = __import__('101-safely_get_value').safely_get_value
+annotations = safely_get_value.__annotations__
+
+print("Here's what the mappings should look like")
+for k, v in annotations.items():
+    print( ("{}: {}".format(k, v)))
+
+bob@dylan:~$ ./101-main.py 
+Here's what the mappings should look like
+dct: typing.Mapping
+key: typing.Any
+default: typing.Union[~T, NoneType]
+return: typing.Union[typing.Any, ~T]
+```
+
+### 12. Type Checking
